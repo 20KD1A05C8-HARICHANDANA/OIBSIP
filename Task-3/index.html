@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        background-image: url("summer.webp");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input {
+        width: 150px;
+        padding: 8px;
+        margin-bottom: 10px;
+      }
+
+      select {
+        padding: 8px;
+        margin-bottom: 10px;
+      }
+
+      button {
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      #result {
+        margin-top: 20px;
+        font-weight: bold;
+        color: black;
+      }
+    </style>
+    <script>
+      function convertTemperature() {
+        // Get user input
+        var temperatureInput = document.getElementById("temperature").value;
+        var scale = document.getElementById("scale").value;
+
+        // Validate input as a number
+        if (isNaN(temperatureInput)) {
+          alert("Please enter a valid number for temperature.");
+          return;
+        }
+
+        // Convert temperature
+        var result;
+        if (scale === "celsius") {
+          result = (parseFloat(temperatureInput) * 9) / 5 + 32;
+        } else if (scale === "fahrenheit") {
+          result = ((parseFloat(temperatureInput) - 32) * 5) / 9;
+        } else if (scale === "kelvin") {
+          result = parseFloat(temperatureInput) + 273.15;
+        }
+
+        // Display result
+        document.getElementById("result").innerHTML =
+          "Converted Temperature: " + result.toFixed(2) + " " + scale;
+      }
+    </script>
+  </head>
+  <body>
+    <label for="temperature">Temperature:</label>
+    <input type="text" id="temperature" placeholder="Enter temperature" />
+
+    <label for="scale">Choose scale:</label>
+    <select id="scale">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+      <option value="kelvin">Kelvin</option>
+    </select>
+
+    <button onclick="convertTemperature()">Convert</button>
+
+    <div id="result"></div>
+  </body>
+</html>
